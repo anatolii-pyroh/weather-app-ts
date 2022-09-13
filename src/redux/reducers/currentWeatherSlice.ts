@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICurrentDay } from "../../interfaces/ICurrentDay";
 
 interface State {
@@ -15,13 +15,13 @@ export const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState: initialState,
   reducers: {
-    addCurrentWeather(state, action) {
+    addCurrentWeather(state, action: PayloadAction<ICurrentDay>) {
       state.info = JSON.parse(JSON.stringify(action.payload));
     },
-    saveCity(state, action) {
+    saveCity(state, action: PayloadAction<ICurrentDay>) {
       state.savedCities.unshift(JSON.parse(JSON.stringify(action.payload)));
     },
-    deleteCity(state, action) {
+    deleteCity(state, action: PayloadAction<ICurrentDay>) {
       state.savedCities = state.savedCities.filter(
         (item) => item.id !== action.payload.id
       );

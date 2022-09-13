@@ -1,10 +1,17 @@
-import { Container } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState<number>(0);
+import { Container } from "@mui/material";
 
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import { ICurrentDay } from "./interfaces/ICurrentDay";
+
+function App() {
+
+  const weatherInfo = useAppSelector(state => state.currentWeather.info)
+  const dispatch = useAppDispatch()
+
+  console.log(weatherInfo)
   return (
     <Container maxWidth='lg'>
       <div className='App'>213</div>

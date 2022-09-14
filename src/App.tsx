@@ -1,20 +1,21 @@
 import React from "react";
 import "./App.css";
 
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import CitiesAutocomplete from "./components/CitiesAutocompleteS/CitiesAutocomplete";
+
 import { Container } from "@mui/material";
 
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
-import { ICurrentDay } from "./interfaces/ICurrentDay";
-
 function App() {
+  const weatherInfo = useAppSelector((state) => state.currentWeather.info);
+  const dispatch = useAppDispatch();
 
-  const weatherInfo = useAppSelector(state => state.currentWeather.info)
-  const dispatch = useAppDispatch()
-
-  console.log(weatherInfo)
+  console.log(weatherInfo);
   return (
     <Container maxWidth='lg'>
-      <div className='App'>213</div>
+      <div className='App'>
+        <CitiesAutocomplete />
+      </div>
     </Container>
   );
 }

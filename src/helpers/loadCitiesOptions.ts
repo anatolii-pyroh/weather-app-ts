@@ -14,12 +14,7 @@ export const geoApiOptions = {
 // receiving cities option list under input by sending request to geoDB API
 export const loadOptions = async (
   inputValue: string
-): Promise<
-  | LoadOptions<string, GroupBase<string>, unknown>
-  | void
-  | { options: any }
-  | any
-> => {
+): Promise<LoadOptions<string, GroupBase<string>, unknown> | any> => {
   return await fetch(
     `${
       import.meta.env.VITE_GEO_API_URL

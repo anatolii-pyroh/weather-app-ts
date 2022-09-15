@@ -1,0 +1,84 @@
+.current-weather {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .current-weather-card {
+    background-color: rgb(204, 223, 243);
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  .current-weather-card img {
+    margin-left: -2rem;
+  }
+  
+  .current-weather-card span {
+    font-style: italic;
+  }
+  .current-weather-card button {
+    background-color: rgb(122, 177, 235);
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+    color: black
+  }
+  
+  .current-weather-card button:hover {
+    background-color: rgb(138, 184, 233);
+  }
+  
+  .current-weather-card-title {
+    background-color: rgb(160, 197, 236);
+    border-radius: 20px 20px 0 0;
+    padding-bottom: 1rem;
+  }
+  .current-weather-card-icon {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .current-weather-description {
+    background-color: rgb(204, 223, 243);
+    padding: 2rem 1.5rem;
+    margin-left: 1rem;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .current-weather-description {
+    font-size: 1.3rem;
+  }
+  
+  .desctiption-icon-with-text {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (max-width: 767px) {
+    .current-weather {
+      display: block;
+    }
+    .current-weather-card {
+      text-align: center;
+      align-items: center;
+    }
+  
+    .current-weather-card-title {
+      width: 100%;
+    }
+    .current-weather-description {
+      margin: 1rem 0;
+      width: auto;
+      text-align: center;
+      align-items: center;
+      background-color: rgb(160, 197, 236);
+    }
+  }
+  

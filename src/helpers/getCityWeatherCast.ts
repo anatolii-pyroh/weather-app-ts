@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-import { SingleValue } from "react-select";
 import { ICurrentDay } from "../interfaces/ICurrentDay";
 import { IForecast } from "../interfaces/IForecast";
 
@@ -8,7 +7,9 @@ type cityWeather = {
   forecast: IForecast;
 };
 
-export const getCityWeatherCast = async (cityInfo: SingleValue<string>) => {
+export const getCityWeatherCast = async (
+  cityInfo: string
+): Promise<cityWeather> => {
   // get city longitude and latitude
   const response = await axios.get(
     `${
@@ -28,11 +29,12 @@ export const getCityWeatherCast = async (cityInfo: SingleValue<string>) => {
     }`
   );
 
+  console.log(response_);
+
   // return current and forecast weather for selected city
   const cityWeatherInfo: cityWeather = {
     current: response.data,
     forecast: response_.data,
   };
-
   return cityWeatherInfo;
 };

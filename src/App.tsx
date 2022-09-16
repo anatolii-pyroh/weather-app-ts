@@ -10,6 +10,7 @@ import CurrentWeather from "./components/CurrentWeather/CurrentWeather";
 import ForecastWeatherList from "./components/ForecastWeather/ForecastWeather";
 import { ICurrentDay } from "./interfaces/ICurrentDay";
 import { IList } from "./interfaces/IList";
+import SavedCitiesList from "./components/SavedCities/SavedCities";
 
 function App() {
   const weather = useAppSelector((state) => state.currentWeather.info);
@@ -42,6 +43,9 @@ function App() {
               />
             )}
             {alignment === "5 days forecast" && <ForecastWeatherList />}
+            {alignment === "saved cities" && (
+              <SavedCitiesList setAlignment={setAlignment} />
+            )}
           </Fragment>
         )}
       </div>

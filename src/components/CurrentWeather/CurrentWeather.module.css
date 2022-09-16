@@ -4,7 +4,7 @@
     margin-top: 1rem;
   }
   .current-weather-card {
-    background-color: rgb(204, 223, 243);
+    background-color: #CCDFF3;
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -18,18 +18,18 @@
     font-style: italic;
   }
   .current-weather-card button {
-    background-color: rgb(122, 177, 235);
+    background-color: #7AB1EB;
     margin-top: -1rem;
     margin-bottom: 1rem;
     color: black
   }
   
   .current-weather-card button:hover {
-    background-color: rgb(138, 184, 233);
+    background-color: #8AB8E9;
   }
   
   .current-weather-card-title {
-    background-color: rgb(160, 197, 236);
+    background-color: #A0C5EC;
     border-radius: 20px 20px 0 0;
     padding-bottom: 1rem;
   }
@@ -41,7 +41,7 @@
   }
   
   .current-weather-description {
-    background-color: rgb(204, 223, 243);
+    background-color: #CCDFF3;
     padding: 2rem 1.5rem;
     margin-left: 1rem;
     width: 100%;
@@ -78,7 +78,7 @@
       width: auto;
       text-align: center;
       align-items: center;
-      background-color: rgb(160, 197, 236);
+      background-color: #A0C5EC;
     }
   }
   

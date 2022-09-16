@@ -2,9 +2,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --sky: #a0c5ec;
+}
 body {
   margin: 0;
-  background-color: rgb(160, 197, 236);
+  background-color: var(--sky);
   font-family: "Roboto", Arial !important;
 }
 
@@ -21,4 +24,27 @@ body {
 .css-1s2u09g-control,
 .css-1pahdxg-control {
   width: 100%;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--sky);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--sky);
+  border-radius: 10px;
+  border: 3px solid #ccc;
 }

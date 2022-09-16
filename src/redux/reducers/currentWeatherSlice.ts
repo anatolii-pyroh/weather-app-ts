@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICurrentDay } from "../../interfaces/ICurrentDay";
+import { IList } from "../../interfaces/IList";
 
 interface State {
   savedCities: ICurrentDay[];
@@ -18,7 +19,7 @@ export const currentWeatherSlice = createSlice({
     addCurrentWeather(state, action: PayloadAction<ICurrentDay>) {
       state.info = JSON.parse(JSON.stringify(action.payload));
     },
-    saveCity(state, action: PayloadAction<ICurrentDay>) {
+    saveCity(state, action: PayloadAction<ICurrentDay | IList>) {
       state.savedCities.unshift(JSON.parse(JSON.stringify(action.payload)));
     },
     deleteCity(state, action: PayloadAction<ICurrentDay>) {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Box, Button, Snackbar } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveCity } from "../../redux/reducers/currentWeatherSlice";
 import classes from "./CurrentWeather.module.css";
 import CloudIcon from "@mui/icons-material/Cloud";
@@ -14,9 +14,10 @@ import moment from "moment-timezone";
 import { ICurrentDay } from "../../interfaces/ICurrentDay";
 import { IForecast } from "../../interfaces/IForecast";
 import { useAppSelector } from "../../hooks/redux";
+import { IList } from "../../interfaces/IList";
 
 interface IProps {
-  weather: ICurrentDay;
+  weather: ICurrentDay & IList;
   currentDay: boolean;
   forecast: IForecast;
 }
@@ -29,13 +30,19 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
     (state) => state.currentWeather.savedCities
   );
   // states for alert message for success or fail save city
-  const [alertState, setAlertState] = useState({
+  type SnackbarPosition = {
+    open: boolean;
+    vertical: string;
+    horizontal: string;
+  };
+  const [alertState, setAlertState] = useState<SnackbarPosition>({
     open: false,
     vertical: "top",
     horizontal: "center",
   });
   const { vertical, horizontal, open } = alertState;
   const [isSuccess, setIsSuccess] = useState<boolean>(true);
+
   const date: string = new Date(weather.dt * 1000).toLocaleDateString("en-GB");
   const dayNumber: number = new Date(weather.dt * 1000).getDay();
   const dayNames: string[] = [
@@ -61,7 +68,7 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
 
   // function to save city or decline if already saved
   const save = () => {
-    const check = savedCities.findIndex((item) => item.id === weather.id);
+    const check = savedCities.findIndex((item) => item.id === weather?.id);
     if (check !== -1) {
       setIsSuccess(false);
       handleClick({
@@ -124,7 +131,7 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
                 {weather?.name}, {weather?.sys?.country}
               </>
             )}
-            {forecast && (
+            {forecast && !currentDay && (
               <>
                 {forecast?.city?.name}, {forecast?.city?.country}
               </>
@@ -196,7 +203,12 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
       </Box>
       {currentDay && (
         <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
+          anchorOrigin={
+            { vertical, horizontal } as {
+              vertical: "top" | "bottom";
+              horizontal: "left" | "center" | "right";
+            }
+          }
           open={open}
           message={isSuccess ? "City saved" : "You already saved this city"}
           onClose={handleClose}

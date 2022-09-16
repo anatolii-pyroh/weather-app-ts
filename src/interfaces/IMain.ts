@@ -1,3 +1,4 @@
+// interface for "main" info in ICurrentDay, IForecast
 export interface IMain {
   feels_like: number;
   humidity: number;

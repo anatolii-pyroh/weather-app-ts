@@ -8,6 +8,7 @@ interface State {
 const initialState: State = {
   info: {} as IForecast,
 };
+
 export const forecastWeatherSlice = createSlice({
   name: "forecastWeather",
   initialState: initialState,

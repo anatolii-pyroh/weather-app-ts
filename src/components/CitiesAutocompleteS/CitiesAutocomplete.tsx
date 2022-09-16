@@ -1,15 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { Box } from "@mui/material";
 
 import { AsyncPaginate } from "react-select-async-paginate";
-import { DropdownOption, loadOptions } from "../../helpers/loadCitiesOptions";
+import { loadOptions } from "../../helpers/loadCitiesOptions";
 import { getCityWeatherCast } from "../../helpers/getCityWeatherCast";
 import { useAppDispatch } from "../../hooks/redux";
 import { addCurrentWeather } from "../../redux/reducers/currentWeatherSlice";
 import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
-import { SingleValue } from "react-select";
-// import { SingleValue } from "react-select";
 
 const CitiesAutocomplete = () => {
   const dispatch = useAppDispatch();

@@ -1,5 +1,4 @@
-import { IMain } from "./IMain";
-import { IWeather } from "./IWeather";
+import { IList } from "./IList";
 
 export interface IForecast {
   city: {
@@ -14,19 +13,5 @@ export interface IForecast {
   };
   cnt: number;
   cod: string;
-  list: {
-    clouds: { all: number };
-    dt: number;
-    dt_txt: string;
-    main: IMain;
-    pop: number;
-    sys: { pod: string };
-    visibility: number;
-    weather: IWeather[];
-    wind: {
-      deg: number;
-      gust: number;
-      speed: number;
-    };
-  }[];
+  list: IList[];
 }

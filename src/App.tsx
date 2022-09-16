@@ -1,12 +1,15 @@
 import React, { Fragment, useState } from "react";
 import "./App.css";
 
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
+import { useAppSelector } from "./hooks/redux";
 import CitiesAutocomplete from "./components/CitiesAutocompleteS/CitiesAutocomplete";
 
 import { Container } from "@mui/material";
 import ToggleSectionButton from "./components/ToggleButton/ToggleButton";
 import CurrentWeather from "./components/CurrentWeather/CurrentWeather";
+import ForecastWeatherList from "./components/ForecastWeather/ForecastWeather";
+import { ICurrentDay } from "./interfaces/ICurrentDay";
+import { IList } from "./interfaces/IList";
 
 function App() {
   const weather = useAppSelector((state) => state.currentWeather.info);
@@ -20,7 +23,6 @@ function App() {
     setAlignment(newAlignment);
   };
 
-  console.log(weather);
   return (
     <Container maxWidth='lg'>
       <div className='App'>
@@ -34,11 +36,12 @@ function App() {
             {/* daily,forecast,saved cities buttons */}
             {alignment === "daily" && (
               <CurrentWeather
-                weather={weather}
+                weather={weather as ICurrentDay & IList}
                 currentDay={true}
                 forecast={forecast}
               />
             )}
+            {alignment === "5 days forecast" && <ForecastWeatherList />}
           </Fragment>
         )}
       </div>

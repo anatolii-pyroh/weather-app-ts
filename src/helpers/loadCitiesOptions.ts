@@ -9,40 +9,18 @@ export const geoApiOptions = {
   },
 };
 
-// // receiving cities option list under input by sending request to geoDB API
-// export const loadOptions = async (inputValue: string): Promise<any> => {
-//   return await fetch(
-//     `${
-//       import.meta.env.VITE_GEO_API_URL
-//     }/cities?minPopulation=200000&namePrefix=${inputValue}`,
-//     geoApiOptions
-//   )
-//     .then((response) => response.json())
-//     .then((response) => {
-//       return {
-//         options: response.data.map((city: ICitiesAutocomplete) => {
-//           return {
-//             value: `${city?.name}, ${city?.countryCode}`,
-//             label: `${city?.name}, ${city?.country}`,
-//           };
-//         }),
-//       };
-//     })
-//     .catch((err) => console.error(err));
-// };
-
 export type DropdownOption = {
   options: string[];
   label: string;
   value: string;
 };
 
-type apiResponse = {
+type DropdownOptions = {
   options: DropdownOption[];
 };
 
 export const loadOptions = (search: string) => {
-  return new Promise<apiResponse>((resolve) => {
+  return new Promise<DropdownOptions>((resolve) => {
     fetch(
       `${
         import.meta.env.VITE_GEO_API_URL
@@ -51,15 +29,15 @@ export const loadOptions = (search: string) => {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
-        resolve({
+        const dropdownOptions: DropdownOptions = {
           options: response.data.map((city: ICitiesAutocomplete) => {
             return {
               value: `${city?.name}, ${city?.countryCode}`,
               label: `${city?.name}, ${city?.country}`,
             };
           }),
-        });
+        };
+        resolve(dropdownOptions);
       })
       .catch((err) => console.error(err));
   });

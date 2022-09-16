@@ -1,24 +1,29 @@
 import { IMain } from "./IMain";
 import { IWeather } from "./IWeather";
 
-export interface ICurrentDay {
+export interface IWeatherCast {
   base: string;
-  clouds: { all: number };
   cod: number;
-  coord: { lat: number; lon: number };
+  clouds: { all: number };
+  coord?: { lat: number; lon: number };
   dt: number;
-  id: number;
+  id?: number;
   main: IMain;
-  name: string;
+  name?: string;
   sys: {
     country?: string;
     id?: number;
     sunrise?: number;
     sunset?: number;
     type?: number;
+    pod?: number;
   };
-  timezone: number;
+  timezone?: number;
+  dt_txt: string;
   visibility: number;
   weather: IWeather[];
-  wind: { deg: number; speed: number };
+  wind: {
+    deg: number;
+    speed: number;
+  };
 }

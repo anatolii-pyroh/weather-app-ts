@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IForecast } from "../../interfaces/IForecast";
 
 interface State {
@@ -13,7 +13,7 @@ export const forecastWeatherSlice = createSlice({
   name: "forecastWeather",
   initialState: initialState,
   reducers: {
-    addForecastWeather(state, action) {
+    addForecastWeather(state, action: PayloadAction<IForecast>) {
       state.info = JSON.parse(JSON.stringify(action.payload));
     },
   },

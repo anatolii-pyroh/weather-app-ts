@@ -213,7 +213,7 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
           message={isSuccess ? "City saved" : "You already saved this city"}
           onClose={handleClose}
           key={vertical + horizontal}
-          autoHideDuration={3000}
+          autoHideDuration={2000}
           ContentProps={{
             sx: {
               fontSize: "1rem",

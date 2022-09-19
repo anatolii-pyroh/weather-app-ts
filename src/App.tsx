@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./App.css";
 
-import { useAppSelector } from "./hooks/redux";
+import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import CitiesAutocomplete from "./components/CitiesAutocompleteS/CitiesAutocomplete";
 
 import { Container } from "@mui/material";
@@ -11,11 +11,20 @@ import ForecastWeatherList from "./components/ForecastWeather/ForecastWeather";
 import { ICurrentDay } from "./interfaces/ICurrentDay";
 import { IList } from "./interfaces/IList";
 import SavedCitiesList from "./components/SavedCities/SavedCities";
+import { updateCityWeatherCast } from "./helpers/updateCityWeatherCast";
+import { addCurrentWeather } from "./redux/reducers/currentWeatherSlice";
+import { addForecastWeather } from "./redux/reducers/forecastWeatherSlice";
+import axios from "axios";
+import { IGeolocationCoordinates } from "./interfaces/IGeolocationCoordinates";
 
 function App() {
   const weather = useAppSelector((state) => state.currentWeather.info);
   const forecast = useAppSelector((state) => state.forecastWeather.info);
+
+  const [nativeCity, setNativeCity] = useState<ICurrentDay>();
   const [alignment, setAlignment] = useState<string>("daily");
+
+  const dispatch = useAppDispatch();
 
   const handleChangeAlignment = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -24,17 +33,65 @@ function App() {
     setAlignment(newAlignment);
   };
 
+  const updateWeatherInfo = async () => {
+    const response = await updateCityWeatherCast(weather);
+    dispatch(addCurrentWeather(response.current));
+    dispatch(addForecastWeather(response.forecast));
+  };
+
+  // functions to get current location
+  const success = async ({ coords }: { coords: IGeolocationCoordinates }) => {
+    console.log({ coords });
+    const { latitude, longitude } = coords;
+    const response = await axios.get(
+      `${
+        import.meta.env.VITE_WEATHER_API_DAILY_URL
+      }?lat=${latitude}&lon=${longitude}&units=metric&appid=${
+        import.meta.env.VITE_WEATHER_API_KEY
+      }`
+    );
+    setNativeCity(response.data);
+  };
+  const error = ({ message }: { message: string }) => {
+    console.log(message);
+  };
+
+  const getNativeCityWeatherCast = async () => {
+    if (nativeCity) {
+      const response = await updateCityWeatherCast(nativeCity);
+      console.log(response);
+      dispatch(addCurrentWeather(response.current));
+      dispatch(addForecastWeather(response.forecast));
+    }
+  };
+
+  // get user current city weather cast
+  useEffect(() => {
+    if (nativeCity) {
+      getNativeCityWeatherCast();
+    }
+  }, [nativeCity]);
+
+  // update while page first time load
+  useEffect(() => {
+    if (weather?.name) {
+      updateWeatherInfo();
+    }
+    navigator.geolocation.getCurrentPosition(success, error, {
+      enableHighAccuracy: true,
+    });
+  }, []);
+
   return (
     <Container maxWidth='lg'>
       <div className='App'>
         <CitiesAutocomplete />
-        {weather && (
+        {weather?.name && (
           <Fragment>
             <ToggleSectionButton
               alignment={alignment}
               handleChangeAlignment={handleChangeAlignment}
             />
-            {/* daily,forecast,saved cities buttons */}
             {alignment === "daily" && (
               <CurrentWeather
                 weather={weather as ICurrentDay & IList}

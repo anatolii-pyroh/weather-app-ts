@@ -1,21 +1,22 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
-import CitiesAutocomplete from "./components/CitiesAutocompleteS/CitiesAutocomplete";
-
-import { Container } from "@mui/material";
-import ToggleSectionButton from "./components/ToggleButton/ToggleButton";
-import CurrentWeather from "./components/CurrentWeather/CurrentWeather";
-import ForecastWeatherList from "./components/ForecastWeather/ForecastWeather";
-import { ICurrentDay } from "./interfaces/ICurrentDay";
-import { IList } from "./interfaces/IList";
-import SavedCitiesList from "./components/SavedCities/SavedCities";
-import { updateCityWeatherCast } from "./helpers/updateCityWeatherCast";
 import { addCurrentWeather } from "./redux/reducers/currentWeatherSlice";
 import { addForecastWeather } from "./redux/reducers/forecastWeatherSlice";
-import axios from "axios";
-import { IGeolocationCoordinates } from "./interfaces/IGeolocationCoordinates";
+
+import { CitiesAutocomplete } from "./components/CitiesAutocomplete";
+import { ToggleSectionButton } from "./components/ToggleButton";
+import { CurrentWeather } from "./components/CurrentWeather";
+import { ForecastWeatherList } from "./components/ForecastWeather";
+import { SavedCities } from "./components/SavedCities";
+
+import { ICurrentDay, IList, IGeolocationCoordinates } from "./interfaces";
+
+import { updateCityWeatherCast } from "./helpers";
+
+import { Container } from "@mui/material";
 
 function App() {
   const weather = useAppSelector((state) => state.currentWeather.info);
@@ -41,7 +42,6 @@ function App() {
 
   // functions to get current location
   const success = async ({ coords }: { coords: IGeolocationCoordinates }) => {
-    console.log({ coords });
     const { latitude, longitude } = coords;
     const response = await axios.get(
       `${
@@ -59,7 +59,7 @@ function App() {
   const getNativeCityWeatherCast = async () => {
     if (nativeCity) {
       const response = await updateCityWeatherCast(nativeCity);
-      console.log(response);
+      // console.log(response);
       dispatch(addCurrentWeather(response.current));
       dispatch(addForecastWeather(response.forecast));
     }
@@ -101,7 +101,7 @@ function App() {
             )}
             {alignment === "5 days forecast" && <ForecastWeatherList />}
             {alignment === "saved cities" && (
-              <SavedCitiesList setAlignment={setAlignment} />
+              <SavedCities setAlignment={setAlignment} />
             )}
           </Fragment>
         )}

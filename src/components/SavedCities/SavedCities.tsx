@@ -13,15 +13,15 @@ import {
   deleteCity,
 } from "../../redux/reducers/currentWeatherSlice";
 import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
-import { getCityWeatherCast } from "../../helpers/getCityWeatherCast";
-import { ICurrentDay } from "../../interfaces/ICurrentDay";
+import { getCityWeatherCast } from "../../helpers";
+import { ICurrentDay } from "../../interfaces";
 import { useAppSelector } from "../../hooks/redux";
 
 interface IProps {
   setAlignment: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SavedCitiesList = ({ setAlignment }: IProps) => {
+export const SavedCities = ({ setAlignment }: IProps) => {
   const savedCities = useAppSelector(
     (state) => state.currentWeather.savedCities
   );
@@ -84,5 +84,3 @@ const SavedCitiesList = ({ setAlignment }: IProps) => {
     </div>
   );
 };
-
-export default SavedCitiesList;

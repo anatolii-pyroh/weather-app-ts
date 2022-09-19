@@ -1,11 +1,11 @@
 import React from "react";
 import { List, Box } from "@mui/material";
-import CurrentWeather from "../CurrentWeather/CurrentWeather";
+import { CurrentWeather } from "../CurrentWeather";
 import { useAppSelector } from "../../hooks/redux";
 import { IList } from "../../interfaces/IList";
 import { ICurrentDay } from "../../interfaces/ICurrentDay";
 
-const ForecastWeatherList = () => {
+export const ForecastWeatherList = () => {
   const forecastWeather = useAppSelector((state) => state.forecastWeather.info);
   // console.log(forecastWeather);
   return (
@@ -38,5 +38,3 @@ const ForecastWeatherList = () => {
     </Box>
   );
 };
-
-export default ForecastWeatherList;

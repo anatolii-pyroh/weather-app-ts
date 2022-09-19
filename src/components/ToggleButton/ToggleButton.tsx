@@ -10,7 +10,7 @@ interface IProps {
   ) => void;
 }
 
-const ToggleSectionButton = ({ alignment, handleChangeAlignment }: IProps) => {
+export const ToggleSectionButton = ({ alignment, handleChangeAlignment }: IProps) => {
   // show "saved cities" button if any is saved
   const isAnyCitySaved = useAppSelector(
     (state) => state.currentWeather.savedCities
@@ -33,5 +33,3 @@ const ToggleSectionButton = ({ alignment, handleChangeAlignment }: IProps) => {
     </Box>
   );
 };
-
-export default ToggleSectionButton;

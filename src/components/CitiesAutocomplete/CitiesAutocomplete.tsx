@@ -1,15 +1,14 @@
-import React, {useState} from "react";
+import React from "react";
 
 import { Box } from "@mui/material";
 
 import { AsyncPaginate } from "react-select-async-paginate";
-import { loadOptions } from "../../helpers/loadCitiesOptions";
-import { getCityWeatherCast } from "../../helpers/getCityWeatherCast";
+import { loadOptions, getCityWeatherCast } from "../../helpers";
 import { useAppDispatch } from "../../hooks/redux";
 import { addCurrentWeather } from "../../redux/reducers/currentWeatherSlice";
 import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
 
-const CitiesAutocomplete = () => {
+export const CitiesAutocomplete = () => {
   const dispatch = useAppDispatch();
 
   const handleOnChange = async (searchData: any) => {
@@ -31,5 +30,3 @@ const CitiesAutocomplete = () => {
     </Box>
   );
 };
-
-export default CitiesAutocomplete;

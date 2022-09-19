@@ -23,7 +23,7 @@ interface IProps {
 }
 
 // currentDay and forecast props to check if item selected for daily or forecast view
-const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
+export const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
   const dispatch = useDispatch();
   const weatherDescription = weather.weather[0].description;
   const savedCities = useAppSelector(
@@ -227,5 +227,3 @@ const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
     </Box>
   );
 };
-
-export default CurrentWeather;

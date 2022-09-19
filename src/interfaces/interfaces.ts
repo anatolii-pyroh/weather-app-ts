@@ -77,7 +77,7 @@ export interface IList {
   };
 }
 
-export interface IMain {
+interface IMain {
   feels_like: number;
   humidity: number;
   pressure: number;
@@ -89,7 +89,7 @@ export interface IMain {
   sea_level?: number;
 }
 
-export interface IWeather {
+interface IWeather {
   id: number;
   main: string;
   description: string;

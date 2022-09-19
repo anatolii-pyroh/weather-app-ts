@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from "react";
-import { Box, Button, Snackbar } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { saveCity } from "../../redux/reducers/currentWeatherSlice";
+
 import classes from "./CurrentWeather.module.css";
+
+import { Box, Button, Snackbar } from "@mui/material";
+
 import CloudIcon from "@mui/icons-material/Cloud";
 import CompressIcon from "@mui/icons-material/Compress";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -10,11 +11,13 @@ import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import WbTwilightIcon from "@mui/icons-material/WbTwilight";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import AirIcon from "@mui/icons-material/Air";
+
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { saveCity } from "../../redux/reducers/currentWeatherSlice";
+
+import { ICurrentDay, IForecast, IList } from "../../interfaces";
+
 import moment from "moment-timezone";
-import { ICurrentDay } from "../../interfaces/ICurrentDay";
-import { IForecast } from "../../interfaces/IForecast";
-import { useAppSelector } from "../../hooks/redux";
-import { IList } from "../../interfaces/IList";
 
 interface IProps {
   weather: ICurrentDay & IList;
@@ -24,7 +27,7 @@ interface IProps {
 
 // currentDay and forecast props to check if item selected for daily or forecast view
 export const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const weatherDescription = weather.weather[0].description;
   const savedCities = useAppSelector(
     (state) => state.currentWeather.savedCities

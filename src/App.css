@@ -5,6 +5,7 @@
 :root {
   --sky: #a0c5ec;
 }
+
 body {
   margin: 0;
   background-color: var(--sky);

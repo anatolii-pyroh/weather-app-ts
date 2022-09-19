@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useDispatch } from "react-redux";
+
 import {
-  addCurrentWeather,
-  deleteCity,
-} from "../../redux/reducers/currentWeatherSlice";
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { addCurrentWeather, deleteCity } from "../../redux/reducers/currentWeatherSlice";
 import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
+
 import { getCityWeatherCast } from "../../helpers";
+
 import { ICurrentDay } from "../../interfaces";
-import { useAppSelector } from "../../hooks/redux";
+
 
 interface IProps {
   setAlignment: React.Dispatch<React.SetStateAction<string>>;
@@ -25,7 +29,7 @@ export const SavedCities = ({ setAlignment }: IProps) => {
   const savedCities = useAppSelector(
     (state) => state.currentWeather.savedCities
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [state, setState] = useState({
     left: true,
   });

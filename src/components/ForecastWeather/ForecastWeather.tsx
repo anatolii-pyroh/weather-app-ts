@@ -1,9 +1,12 @@
 import React from "react";
+
 import { List, Box } from "@mui/material";
+
 import { CurrentWeather } from "../CurrentWeather";
+
 import { useAppSelector } from "../../hooks/redux";
-import { IList } from "../../interfaces/IList";
-import { ICurrentDay } from "../../interfaces/ICurrentDay";
+
+import { IList, ICurrentDay } from "../../interfaces";
 
 export const ForecastWeatherList = () => {
   const forecastWeather = useAppSelector((state) => state.forecastWeather.info);
@@ -23,9 +26,9 @@ export const ForecastWeatherList = () => {
         {/* plus element 39(last day of forecast) */}
         {forecastWeather.list
           .filter(
-            (item, index) => index !== 0 && (index === 39 || index % 8 === 0)
+            (item: IList, index: number) => index !== 0 && (index === 39 || index % 8 === 0)
           )
-          .map((item) => (
+          .map((item: IList) => (
             <li key={item.dt}>
               <CurrentWeather
                 weather={item as ICurrentDay & IList}

@@ -1,5 +1,7 @@
 import React from "react";
+
 import { Box, ToggleButton, ToggleButtonGroup } from "@mui/material";
+
 import { useAppSelector } from "../../hooks/redux";
 
 interface IProps {

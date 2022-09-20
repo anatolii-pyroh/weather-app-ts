@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICitiesAutocomplete, ICurrentDay, IForecast } from "../interfaces";
+import { ICitiesAutocomplete, ICurrentDay, IForecast } from "@/interfaces";
 
 type CityWeather = {
   current: ICurrentDay;
@@ -9,7 +9,7 @@ type CityWeather = {
 export const getCityWeatherCast = async (
   cityInfo: string
 ): Promise<CityWeather> => {
-  // get city longitude and latitude
+  // get city current day weather + longitude and latitude
   const response = await axios.get(
     `${
       import.meta.env.VITE_WEATHER_API_DAILY_URL
@@ -35,15 +35,13 @@ export const getCityWeatherCast = async (
   return cityWeatherInfo;
 };
 
-
 export const updateCityWeatherCast = async (
-    weather: ICurrentDay
-  ): Promise<CityWeather> => {
-    const cityInfo = `${weather?.name}, ${weather?.sys?.country}`;
-    const response = await getCityWeatherCast(cityInfo);
-    return response;
-  };
-  
+  weather: ICurrentDay
+): Promise<CityWeather> => {
+  const cityInfo = `${weather?.name}, ${weather?.sys?.country}`;
+  const response = await getCityWeatherCast(cityInfo);
+  return response;
+};
 
 type DropdownOption = {
   options: string[];

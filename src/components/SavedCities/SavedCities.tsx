@@ -12,13 +12,13 @@ import {
 
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { addCurrentWeather, deleteCity } from "../../redux/reducers/currentWeatherSlice";
-import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { addCurrentWeather, deleteCity } from "@/redux/reducers/currentWeatherSlice";
+import { addForecastWeather } from "@/redux/reducers/forecastWeatherSlice";
 
-import { getCityWeatherCast } from "../../helpers";
+import { getCityWeatherCast } from "@/helpers";
 
-import { ICurrentDay } from "../../interfaces";
+import { ICurrentDay } from "@/interfaces";
 
 
 interface IProps {

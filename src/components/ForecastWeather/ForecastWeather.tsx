@@ -4,9 +4,9 @@ import { List, Box } from "@mui/material";
 
 import { CurrentWeather } from "../CurrentWeather";
 
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "@/hooks/redux";
 
-import { IList, ICurrentDay } from "../../interfaces";
+import { IList, ICurrentDay } from "@/interfaces";
 
 export const ForecastWeatherList = () => {
   const forecastWeather = useAppSelector((state) => state.forecastWeather.info);

@@ -12,10 +12,10 @@ import WbTwilightIcon from "@mui/icons-material/WbTwilight";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import AirIcon from "@mui/icons-material/Air";
 
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { saveCity } from "../../redux/reducers/currentWeatherSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { saveCity } from "@/redux/reducers/currentWeatherSlice";
 
-import { ICurrentDay, IForecast, IList } from "../../interfaces";
+import { ICurrentDay, IForecast, IList } from "@/interfaces";
 
 import moment from "moment-timezone";
 

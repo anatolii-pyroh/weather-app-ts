@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICurrentDay } from "../../interfaces/ICurrentDay";
+import { ICurrentDay } from "@/interfaces";
 
 interface State {
   savedCities: ICurrentDay[];

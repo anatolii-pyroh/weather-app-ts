@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IForecast } from "../../interfaces/IForecast";
+import { IForecast } from "@/interfaces";
 
 interface State {
   info: IForecast;

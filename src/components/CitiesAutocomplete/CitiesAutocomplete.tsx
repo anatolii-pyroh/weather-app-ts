@@ -3,11 +3,11 @@ import React from "react";
 import { Box } from "@mui/material";
 
 import { AsyncPaginate } from "react-select-async-paginate";
-import { loadOptions, getCityWeatherCast } from "../../helpers";
+import { loadOptions, getCityWeatherCast } from "@/helpers";
 
-import { useAppDispatch } from "../../hooks/redux";
-import { addCurrentWeather } from "../../redux/reducers/currentWeatherSlice";
-import { addForecastWeather } from "../../redux/reducers/forecastWeatherSlice";
+import { useAppDispatch } from "@/hooks/redux";
+import { addCurrentWeather } from "@/redux/reducers/currentWeatherSlice";
+import { addForecastWeather } from "@/redux/reducers/forecastWeatherSlice";
 
 export const CitiesAutocomplete = () => {
   const dispatch = useAppDispatch();

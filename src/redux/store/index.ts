@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-// import dependencies for redux persist
+
 import {
   persistStore,
   persistReducer,
@@ -10,11 +10,11 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import storage from "redux-persist/lib/storage";
+
 import currentWeatherSlice from "../reducers/currentWeatherSlice";
 import forecastWeatherSlice from "../reducers/forecastWeatherSlice";
 
-// create persist config
 const persistConfig = {
   key: "root",
   storage,

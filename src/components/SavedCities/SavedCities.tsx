@@ -55,6 +55,7 @@ export const SavedCities = ({ setAlignment }: IProps) => {
     dispatch(addCurrentWeather(response.current));
     dispatch(addForecastWeather(response.forecast));
   };
+  
   return (
     <div>
       <Drawer

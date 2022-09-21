@@ -18,6 +18,7 @@ export const getCityWeatherCast = async (
 
   const latitude = response.data.coord.lat;
   const longitude = response.data.coord.lon;
+  
   // get city weather forecast info for 5 days
   const response_ = await axios.get(
     `${

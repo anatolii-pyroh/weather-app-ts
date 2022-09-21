@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { addCurrentWeather } from "@/redux/reducers/currentWeatherSlice";
@@ -20,6 +19,8 @@ import {
 } from "./interfaces";
 
 import { updateCityWeatherCast } from "./helpers";
+
+import axios from "axios";
 
 import { Container } from "@mui/material";
 

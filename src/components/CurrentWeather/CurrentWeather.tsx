@@ -220,7 +220,7 @@ export const CurrentWeather = ({ weather, currentDay, forecast }: IProps) => {
           ContentProps={{
             sx: {
               fontSize: "1rem",
-              background: isSuccess ? "rgb(46,125,50)" : "rgb(211,47,47)",
+              background: isSuccess ? "#2E7D32" : "#D32F2F",
               display: "block",
               textAlign: "center",
             },

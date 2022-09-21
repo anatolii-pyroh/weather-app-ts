@@ -12,7 +12,7 @@ import { getForecastData } from "@/redux/reducers/forecastWeatherSlice";
 export const CitiesAutocomplete = () => {
   const dispatch = useAppDispatch();
 
-  const handleOnChange = async (cityInfo: any) => {
+  const handleOnChange = (cityInfo: any) => {
     dispatch(getCurrentData(cityInfo.value))
     dispatch(getForecastData(cityInfo.value))
   };

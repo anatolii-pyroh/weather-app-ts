@@ -13,13 +13,10 @@ import {
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { addCurrentWeather, deleteCity } from "@/redux/reducers/currentWeatherSlice";
-import { addForecastWeather } from "@/redux/reducers/forecastWeatherSlice";
-
-import { getCityWeatherCast } from "@/helpers";
+import { deleteCity, getCurrentData } from "@/redux/reducers/currentWeatherSlice";
+import { getForecastData } from "@/redux/reducers/forecastWeatherSlice";
 
 import { ICurrentDay } from "@/interfaces";
-
 
 interface IProps {
   setAlignment: React.Dispatch<React.SetStateAction<string>>;
@@ -49,13 +46,12 @@ export const SavedCities = ({ setAlignment }: IProps) => {
     };
 
   // show city when click on it in list
-  const showCityInfo = async (cityInfo: string) => {
+  const showCityInfo = (cityInfo: string) => {
     setAlignment("daily");
-    const response = await getCityWeatherCast(cityInfo);
-    dispatch(addCurrentWeather(response.current));
-    dispatch(addForecastWeather(response.forecast));
+    dispatch(getCurrentData(cityInfo));
+    dispatch(getForecastData(cityInfo));
   };
-  
+
   return (
     <div>
       <Drawer
